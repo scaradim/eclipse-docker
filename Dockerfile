@@ -22,4 +22,4 @@ COPY install_eclipse.sh ./install_eclipse.sh
 RUN ./install_eclipse.sh
 
 RUN curl -O http://heanet.dl.sourceforge.net/project/eclim/eclim/2.4.1/eclim_2.4.1.jar
-RUN java -Dvim.files=$HOME/.vim -Declipse.home=$HOME/eclipse -jar eclim_2.4.1.jar install && rm $HOME/eclim_2.4.1.jar
+RUN java -Dvim.files=$HOME/.nvim -Declipse.home=$HOME/eclipse -jar eclim_2.4.1.jar install && rm $HOME/eclim_2.4.1.jar
