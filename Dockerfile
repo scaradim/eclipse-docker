@@ -12,13 +12,14 @@ ls -al ;\
 sudo -u dev makepkg --noconfirm && \
 pacman --noconfirm -U *.tar.xz
 
-USER dev
 WORKDIR /home/dev
+RUN sudo -u dev curl http://ftp.fau.de/eclipse/technology/epp/downloads/release/luna/SR2/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz | tar zx
+
+USER dev
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-jdk
 ENV PATH /usr/lib/jvm/java-8-jdk/bin:$PATH
 
-RUN curl http://ftp.fau.de/eclipse/technology/epp/downloads/release/luna/SR2/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz | tar zx
 RUN DISPLAY=:1 $HOME/eclipse/eclipse -nosplash -consolelog -debug -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/luna -installIU org.eclipse.dltk.core.feature.group
 RUN DISPLAY=:1 $HOME/eclipse/eclipse -nosplash -consolelog -debug -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/luna -installIU org.eclipse.dltk.ruby.feature.group
 RUN DISPLAY=:1 $HOME/eclipse/eclipse -nosplash -consolelog -debug -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/luna -installIU org.eclipse.jdt.feature.group
